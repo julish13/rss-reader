@@ -1,17 +1,17 @@
 install: 
 	npm install
 
-publish:
-	npm publish --dry-run
-
 prettier:
-	npx prettier --write ./src/ ./__tests__/ ./bin/
+	npx prettier --write ./src/ ./__tests__/
 
 lint:
-	npx eslint --fix .
+	npx eslint --fix ./src/
 
 test:
 	npm test
 
 test-coverage:
 	npm test -- --coverage --coverageProvider=v8
+
+build:
+	npm run build
