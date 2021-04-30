@@ -4,7 +4,7 @@ const getContent = (container, selector, isRequired = true) => {
   if (isRequired && !element) {
     throw new Error(errorMessage);
   }
-  return element ? element.textContent : null;
+  return element ? element.textContent : '';
 };
 
 const getFormat = (xml) => {
@@ -54,7 +54,7 @@ const parseFeed = (data) => {
   } = selectors[format];
 
   const title = getContent(doc, titleSelector);
-  const description = getContent(doc, feedDescriptionSelector);
+  const description = getContent(doc, feedDescriptionSelector, false);
   const items = doc.querySelectorAll(itemSelector);
 
   const posts = Array.from(items).reduce(
