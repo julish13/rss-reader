@@ -5,6 +5,6 @@ export default {
   },
   data: {
     feeds: [],
-    posts: {},
+    posts: [],
   },
 };

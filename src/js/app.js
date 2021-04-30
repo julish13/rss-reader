@@ -17,18 +17,25 @@ export default () => {
         return link;
       })
       .then((link) => {
-        const urlProxified = `https://hexlet-allorigins.herokuapp.com/get?url=${
-          encodeURIComponent(link)
-        }`;
+        const urlProxified = `https://hexlet-allorigins.herokuapp.com/get?url=${encodeURIComponent(
+          link,
+        )}`;
         return axios.get(urlProxified);
       })
       .then(({ data: { contents } }) => {
         const id = _.uniqueId();
         const { title, description, posts } = parseFeed(contents);
-        watchedState.data.feeds.push({
-          id, url, title, description,
+        watchedState.data.feeds.unshift({
+          id,
+          url,
+          title,
+          description,
         });
-        watchedState.data.posts[id] = posts;
+        const allPosts = [
+          ...watchedState.data.posts,
+          ...posts.map((post) => ({ ...post, feedId: id })),
+        ];
+        watchedState.data.posts = _.orderBy(allPosts, 'pubDate', 'desc');
         watchedState.form.processState = 'succeed';
       })
       .catch((error) => {
