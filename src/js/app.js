@@ -5,6 +5,7 @@ import validateUrl from './validator.js';
 import watchedState from './view.js';
 
 const form = document.querySelector('.rss-form');
+const input = form.querySelector('input');
 
 export default () => {
   form.addEventListener('submit', (e) => {
@@ -37,6 +38,8 @@ export default () => {
         ];
         watchedState.data.posts = _.orderBy(allPosts, 'pubDate', 'desc');
         watchedState.form.processState = 'succeed';
+        form.reset();
+        input.focus();
       })
       .catch((error) => {
         watchedState.form.error = error;
