@@ -40,11 +40,12 @@ export default () => {
         watchedState.form.processState = 'succeed';
         formElement.reset();
         inputElement.focus();
+        inputElement.classList.remove('is-invalid')
       })
       .catch((error) => {
         watchedState.form.error = error;
         watchedState.form.processState = 'invalid';
-        console.log(error)
+        inputElement.classList.add('is-invalid');
       });
   });
 };
