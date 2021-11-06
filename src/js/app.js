@@ -3,14 +3,15 @@ import axios from 'axios';
 import parseFeed from './parser.js';
 import validateUrl from './validator.js';
 import watchedState from './view.js';
-
-const form = document.querySelector('.rss-form');
-const input = form.querySelector('input');
+import proxifyUrl from './utils/proxifyUrl.js';
 
 export default () => {
-  form.addEventListener('submit', (e) => {
+  const formElement = document.querySelector('.rss-form');
+  const inputElement = formElement.querySelector('input');
+
+  formElement.addEventListener('submit', (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
+    const formData = new FormData(formElement);
     const url = formData.get('url');
     validateUrl(url, watchedState.data.feeds)
       .then((link) => {
@@ -18,12 +19,11 @@ export default () => {
         return link;
       })
       .then((link) => {
-        const urlProxified = `https://hexlet-allorigins.herokuapp.com/get?url=${encodeURIComponent(
-          link,
-        )}`;
+        const urlProxified = proxifyUrl(link);
         return axios.get(urlProxified);
       })
-      .then(({ data: { contents } }) => {
+      .then((response) => {
+        const { data: { contents } } = response;
         const id = _.uniqueId();
         const { title, description, posts } = parseFeed(contents);
         watchedState.data.feeds.unshift({
@@ -38,12 +38,13 @@ export default () => {
         ];
         watchedState.data.posts = _.orderBy(allPosts, 'pubDate', 'desc');
         watchedState.form.processState = 'succeed';
-        form.reset();
-        input.focus();
+        formElement.reset();
+        inputElement.focus();
       })
       .catch((error) => {
         watchedState.form.error = error;
         watchedState.form.processState = 'invalid';
+        console.log(error)
       });
   });
 };

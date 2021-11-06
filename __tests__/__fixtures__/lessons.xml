@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Новые уроки на Хекслете</title>
+    <description>Практические уроки по программированию</description>
+    <link>https://ru.hexlet.io/</link>
+    <webMaster>info@hexlet.io</webMaster>
+    <item>
+      <title>Название урока / Основы тестирования программного обеспечения</title>
+      <guid isPermaLink="false">2195</guid>
+      <link>https://ru.hexlet.io/courses/software-testing-basics/lessons/first_lesson/theory_unit</link>
+      <description>Цель: Описание урока</description>
+      <pubDate>Fri, 05 Nov 2021 19:12:56 +0300</pubDate>
+    </item>
+    <item>
+      <title>REST API / Java: Веб-технологии</title>
+      <guid isPermaLink="false">2194</guid>
+      <link>https://ru.hexlet.io/courses/java-web/lessons/rest-api/theory_unit</link>
+      <description>Цель: Познакомиться с концепцией механизма REST</description>
+      <pubDate>Mon, 01 Nov 2021 12:10:30 +0300</pubDate>
+    </item>
+    <item>
+      <title>Validation / Java: Веб-технологии</title>
+      <guid isPermaLink="false">2193</guid>
+      <link>https://ru.hexlet.io/courses/java-web/lessons/validation/theory_unit</link>
+      <description>Цель: Познакомиться с валидацией данных во фреймворке Javalin</description>
+      <pubDate>Mon, 01 Nov 2021 12:10:26 +0300</pubDate>
+    </item>
+  </channel>
+</rss>

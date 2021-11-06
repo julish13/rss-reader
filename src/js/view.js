@@ -3,12 +3,9 @@ import state from './state.js';
 
 const successMessage = 'RSS успешно загружен';
 
-const feedback = document.querySelector('.feedback');
-const feeds = document.querySelector('.feeds');
-const posts = document.querySelector('.posts');
-
 const renderFeeds = (value) => {
-  feeds.innerHTML = `<h2>Фиды</h2>
+  const feedsElement = document.querySelector('.feeds');
+  feedsElement.innerHTML = `<h2>Фиды</h2>
     <ul class="list-group mb-5">${value
     .map(
       ({ title, description }) => `<li class="list-group-item">
@@ -20,7 +17,8 @@ const renderFeeds = (value) => {
 };
 
 const renderPosts = (value) => {
-  posts.innerHTML = `<h2>Посты</h2>
+  const postsElement = document.querySelector('.posts');
+  postsElement.innerHTML = `<h2>Посты</h2>
     <ul class="list-group">${value
     .map(
       ({
@@ -38,21 +36,28 @@ const renderPosts = (value) => {
     .join('\n')}</ul>`;
 };
 
+const renderFeedback = (value) => {
+  const feedbackElement = document.querySelector('.feedback');
+  if (value === 'succeed') {
+    feedbackElement.textContent = successMessage;
+    feedbackElement.classList.remove('text-danger');
+    feedbackElement.classList.add('text-success');
+    return;
+  }
+  if (value instanceof Error) {
+    feedbackElement.textContent = value.message;
+    feedbackElement.classList.remove('text-success');
+    feedbackElement.classList.add('text-danger');
+  }
+};
+
 const watchedState = onChange(state, (path, value) => {
   switch (path) {
     case 'form.processState':
-      if (value === 'succeed') {
-        feedback.textContent = successMessage;
-        feedback.classList.remove('text-danger');
-        feedback.classList.add('text-success');
-      }
+      renderFeedback(value);
       break;
     case 'form.error':
-      if (value) {
-        feedback.textContent = value.message;
-        feedback.classList.remove('text-success');
-        feedback.classList.add('text-danger');
-      }
+      renderFeedback(value);
       break;
     case 'data.feeds':
       renderFeeds(value);
