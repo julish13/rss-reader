@@ -7,11 +7,18 @@ env:
 
 extends:
   - 'airbnb-base'
+  - plugin:jest-dom/recommended
+  - plugin:testing-library/dom
 
 parserOptions:
   ecmaVersion: 2020
   sourceType: module
 
+plugins:
+  - 'testing-library'
+  - 'jest-dom'
+
 rules:
+  no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }]
   no-console: 0
   import/extensions: 0
