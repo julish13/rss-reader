@@ -1,9 +1,8 @@
 import _ from 'lodash';
-import axios from 'axios';
 import parseFeed from './parser.js';
 import validateUrl from './validator.js';
 import watchedState from './view.js';
-import proxifyUrl from './utils/proxifyUrl.js';
+import getData from './getData.js';
 
 export default () => {
   const formElement = document.querySelector('.rss-form');
@@ -19,8 +18,7 @@ export default () => {
         return link;
       })
       .then((link) => {
-        const urlProxified = proxifyUrl(link);
-        return axios.get(urlProxified);
+        return getData(link);
       })
       .then((response) => {
         const { data: { contents } } = response;
