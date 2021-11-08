@@ -4,7 +4,7 @@ import fs from 'fs';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import nock from 'nock';
-import run from '../src/js/app.js';
+import run from '../src/app.js';
 
 nock.disableNetConnect();
 
