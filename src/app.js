@@ -1,9 +1,18 @@
+import i18next from 'i18next';
+import ru from './locales/ru.js';
 import validateUrl from './utils/validator.js';
 import watchedState from './view.js';
 import getData from './utils/getData.js';
-import setDataState from './utils/setDataState';
+import setDataState from './utils/setDataState.js';
 
-export default () => {
+export default async () => {
+  await i18next.init({
+    lng: 'ru',
+    debug: true,
+    resources: {
+      ru,
+    },
+  });
   const formElement = document.querySelector('.rss-form');
   const inputElement = formElement.querySelector('input');
 

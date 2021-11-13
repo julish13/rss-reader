@@ -1,4 +1,4 @@
-const errorMessage = 'Ресурс не содержит валидный RSS';
+const errorMessage = 'invalidFormat';
 const getContent = (container, selector, isRequired = true) => {
   const element = container.querySelector(selector);
   if (isRequired && !element) {

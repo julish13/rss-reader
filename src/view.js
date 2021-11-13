@@ -1,7 +1,6 @@
 import onChange from 'on-change';
+import i18next from 'i18next';
 import state from './state.js';
-
-const successMessage = 'RSS успешно загружен';
 
 const renderFeeds = (value) => {
   const feedsElement = document.querySelector('.feeds');
@@ -39,13 +38,13 @@ const renderPosts = (value) => {
 const renderFeedback = (value) => {
   const feedbackElement = document.querySelector('.feedback');
   if (value === 'succeed') {
-    feedbackElement.textContent = successMessage;
+    feedbackElement.textContent = i18next.t('successMessage');
     feedbackElement.classList.remove('text-danger');
     feedbackElement.classList.add('text-success');
     return;
   }
   if (value instanceof Error) {
-    feedbackElement.textContent = value.message;
+    feedbackElement.textContent = i18next.t(`errors.${value.message}`);
     feedbackElement.classList.remove('text-success');
     feedbackElement.classList.add('text-danger');
   }

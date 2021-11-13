@@ -1,18 +1,13 @@
 import * as yup from 'yup';
 
-const errorMessages = {
-  invalidUrl: 'Ссылка должна быть валидным URL',
-  duplicate: 'RSS уже существует',
-};
-
-const schema = yup.string().url(errorMessages.invalidUrl);
+const schema = yup.string().url('invalidUrl');
 const validateUrl = (url, list) => {
   const promise = schema.validate(url).then((urlValidating) => {
     const isDuplicate = list.some(
       ({ url: urlAdded }) => urlValidating === urlAdded,
     );
     if (isDuplicate) {
-      throw new Error(errorMessages.duplicate);
+      throw new Error('duplicate');
     }
     return urlValidating;
   });
