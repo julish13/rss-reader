@@ -1,7 +1,7 @@
-import validateUrl from './validator.js';
+import validateUrl from './utils/validator.js';
 import watchedState from './view.js';
-import getData from './getData.js';
-import setDataState from './setDataState';
+import getData from './utils/getData.js';
+import setDataState from './utils/setDataState';
 
 export default () => {
   const formElement = document.querySelector('.rss-form');

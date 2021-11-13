@@ -1,5 +1,5 @@
 import axios from 'axios';
-import proxifyUrl from './utils/proxifyUrl.js';
+import proxifyUrl from './proxifyUrl.js';
 
 const getData = (link) => {
   const urlProxified = proxifyUrl(link);

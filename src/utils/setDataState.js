@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import parseFeed from './parser.js';
-import watchedState from './view.js';
+import watchedState from '../view.js';
 
 export default (data, url) => {
   const id = _.uniqueId();
