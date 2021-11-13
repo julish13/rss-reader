@@ -1,50 +1,87 @@
 import onChange from 'on-change';
 import i18next from 'i18next';
+import removeAllChildNodes from './utils/removeAllChildNodes.js';
 import state from './state.js';
 
-const renderFeeds = (value) => {
+const renderFeeds = (feeds) => {
   const feedsElement = document.querySelector('.feeds');
   feedsElement.innerHTML = `<h2>Фиды</h2>
-    <ul class="list-group mb-5">${value
-    .map(
-      ({ title, description }) => `<li class="list-group-item">
+    <ul class="list-group mb-5">${feeds
+      .map(
+        ({ title, description }) => `<li class="list-group-item">
 <h3>${title}</h3>
 <p>${description}</p>
-</li>`,
-    )
-    .join('\n')}</ul>`;
+</li>`
+      )
+      .join('\n')}</ul>`;
 };
 
-const renderPosts = (value) => {
+const renderModal = (title, url, description) => {
+  const modal = document.querySelector('.modal-content');
+  const modalTitle = modal.querySelector('.modal-title');
+  const modalBody = modal.querySelector('.modal-body');
+  const modalLink = modal.querySelector('.full-article');
+
+  modalTitle.textContent = title;
+  modalBody.textContent = description;
+  modalLink.href = url;
+};
+
+const renderPosts = (posts) => {
   const postsElement = document.querySelector('.posts');
-  postsElement.innerHTML = `<h2>Посты</h2>
-    <ul class="list-group">${value
-    .map(
-      ({
-        title,
-        url,
-      }) => `<li class="list-group-item d-flex justify-content-between align-items-start">
-  <a href="${url}" class="font-weight-bold" data-id="2" target="_blank" rel="noopener noreferrer">
-  ${title}
-  </a>
-  <button type="button" class="btn btn-primary btn-sm" data-id="2" data-toggle="modal" data-target="#modal">
-  Просмотр
-  </button>
-</li>`,
-    )
-    .join('\n')}</ul>`;
+  removeAllChildNodes(postsElement);
+
+  const headingElement = document.createElement('h2');
+  headingElement.textContent = 'Посты';
+
+  const listElement = document.createElement('ul');
+  listElement.classList.add('list-group');
+
+  postsElement.appendChild(headingElement);
+  postsElement.appendChild(listElement);
+
+  posts.forEach(({ title, url, description }) => {
+    const postElement = document.createElement('li');
+    postElement.classList.add(
+      'list-group-item',
+      'd-flex',
+      'justify-content-between',
+      'align-items-start',
+    );
+
+    const linkElement = document.createElement('a');
+    linkElement.classList.add('font-weight-bold');
+    linkElement.href = url;
+    linkElement.setAttribute('data-id', '2');
+    linkElement.setAttribute('target', '_blank');
+    linkElement.setAttribute('rel', 'noopener noreferrer');
+    linkElement.textContent = title;
+
+    const buttonElement = document.createElement('button');
+    buttonElement.type = 'button';
+    buttonElement.textContent = 'Просмотр';
+    buttonElement.classList.add('btn', 'btn-primary', 'btn-sm');
+    buttonElement.setAttribute('data-id', '2');
+    buttonElement.setAttribute('data-toggle', 'modal');
+    buttonElement.setAttribute('data-target', '#modal');
+    buttonElement.onclick = () => renderModal(title, url, description);
+
+    postElement.appendChild(linkElement);
+    postElement.appendChild(buttonElement);
+    listElement.appendChild(postElement);
+  });
 };
 
-const renderFeedback = (value) => {
+const renderFeedback = (feedback) => {
   const feedbackElement = document.querySelector('.feedback');
-  if (value === 'succeed') {
+  if (feedback === 'succeed') {
     feedbackElement.textContent = i18next.t('successMessage');
     feedbackElement.classList.remove('text-danger');
     feedbackElement.classList.add('text-success');
     return;
   }
-  if (value instanceof Error) {
-    feedbackElement.textContent = i18next.t(`errors.${value.message}`);
+  if (feedback instanceof Error) {
+    feedbackElement.textContent = i18next.t(`errors.${feedback.message}`);
     feedbackElement.classList.remove('text-success');
     feedbackElement.classList.add('text-danger');
   }
