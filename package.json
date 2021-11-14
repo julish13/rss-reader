@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "RSS агрегатор",
-  "main": "index.js",
+  "main": "./src/app.js",
   "type": "module",
   "scripts": {
     "test": "npx -n '--experimental-vm-modules --no-warnings' jest --colors",
