@@ -66,7 +66,7 @@ const renderPosts = (posts) => {
     );
 
     const linkElement = document.createElement('a');
-    linkElement.classList.add('font-weight-bold');
+    linkElement.classList.add('fw-bold');
     linkElement.href = url;
     linkElement.setAttribute('data-id', '2');
     linkElement.setAttribute('target', '_blank');
@@ -80,7 +80,11 @@ const renderPosts = (posts) => {
     buttonElement.setAttribute('data-id', '2');
     buttonElement.setAttribute('data-toggle', 'modal');
     buttonElement.setAttribute('data-target', '#modal');
-    buttonElement.onclick = () => renderModal(title, url, description);
+    buttonElement.onclick = () => {
+      renderModal(title, url, description);
+      linkElement.classList.remove('fw-bold');
+      linkElement.classList.add('fw-normal');
+    };
 
     postElement.appendChild(linkElement);
     postElement.appendChild(buttonElement);
