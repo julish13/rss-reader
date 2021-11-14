@@ -75,7 +75,7 @@ const renderPosts = (posts) => {
 
     const buttonElement = document.createElement('button');
     buttonElement.type = 'button';
-    buttonElement.textContent = 'Просмотр';
+    buttonElement.textContent = i18next.t('watchLink');
     buttonElement.classList.add('btn', 'btn-primary', 'btn-sm');
     buttonElement.setAttribute('data-id', '2');
     buttonElement.setAttribute('data-toggle', 'modal');
