@@ -20,6 +20,7 @@ export default async () => {
     e.preventDefault();
     const formData = new FormData(formElement);
     const url = formData.get('url');
+    console.log(url)
     validateUrl(url, watchedState.data.feeds)
       .then((link) => {
         watchedState.form.error = null;

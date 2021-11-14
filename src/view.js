@@ -117,6 +117,7 @@ const watchedState = onChange(state, (path, value) => {
       break;
     case 'data.feeds':
       renderFeeds(value);
+      console.log(state.data.feeds);
       break;
     case 'data.posts':
       renderPosts(value);
