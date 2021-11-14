@@ -5,15 +5,31 @@ import state from './state.js';
 
 const renderFeeds = (feeds) => {
   const feedsElement = document.querySelector('.feeds');
-  feedsElement.innerHTML = `<h2>Фиды</h2>
-    <ul class="list-group mb-5">${feeds
-      .map(
-        ({ title, description }) => `<li class="list-group-item">
-<h3>${title}</h3>
-<p>${description}</p>
-</li>`
-      )
-      .join('\n')}</ul>`;
+  removeAllChildNodes(feedsElement);
+
+  const headingElement = document.createElement('h2');
+  headingElement.textContent = 'Фиды';
+
+  const listElement = document.createElement('ul');
+  listElement.classList.add('list-group', 'mb-5');
+
+  feedsElement.appendChild(headingElement);
+  feedsElement.appendChild(listElement);
+
+  feeds.forEach(({ title, description }) => {
+    const feedElement = document.createElement('li');
+    feedElement.classList.add('list-group-item');
+
+    const titleElement = document.createElement('h3');
+    titleElement.textContent = title;
+
+    const descriptionElement = document.createElement('p');
+    descriptionElement.textContent = description;
+
+    feedElement.appendChild(titleElement);
+    feedElement.appendChild(descriptionElement);
+    listElement.appendChild(feedElement);
+  });
 };
 
 const renderModal = (title, url, description) => {
