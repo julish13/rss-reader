@@ -1,17 +1,15 @@
 import * as yup from 'yup';
 
-const schema = yup.string().required('empty').url('invalidUrl');
-const validateUrl = (url, list) => {
-  const promise = schema.validate(url).then((urlValidating) => {
-    const isDuplicate = list.some(
-      ({ url: urlAdded }) => urlValidating === urlAdded,
+const validateUrl = (urlValidated, list) => {
+  const schema = yup
+    .string()
+    .required('empty')
+    .url('invalidUrl')
+    .notOneOf(
+      list.map(({ url }) => url),
+      'duplicate',
     );
-    if (isDuplicate) {
-      throw new Error('duplicate');
-    }
-    return urlValidating;
-  });
-  return promise;
+  return schema.validate(urlValidated);
 };
 
 export default validateUrl;
