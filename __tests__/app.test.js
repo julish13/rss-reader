@@ -45,7 +45,7 @@ test('invalid url', async () => {
 
 test('invalid format', async () => {
   nock('https://hexlet-allorigins.herokuapp.com')
-    .get(`/get?url=${encodeURIComponent('https://www.google.com/')}`)
+    .get(`/get?disableCache=true&url=${encodeURIComponent('https://www.google.com/')}`)
     .reply(200, { contents: 'aaa' }, nockHeaders);
 
   fireEvent.input(elements.input, {
