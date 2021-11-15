@@ -8,6 +8,8 @@ import run from '../src/app.js';
 
 nock.disableNetConnect();
 
+/* eslint no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }] */
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const getFixturePath = (filename) => path.resolve(__dirname, '__fixtures__', filename);
