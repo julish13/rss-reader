@@ -1,5 +1,4 @@
 import onChange from 'on-change';
-import i18next from 'i18next';
 import removeAllChildNodes from './utils/removeAllChildNodes.js';
 import state from './state.js';
 
@@ -43,7 +42,7 @@ const renderModal = (title, url, description) => {
   modalLink.href = url;
 };
 
-const renderPosts = (posts) => {
+const renderPosts = (posts, i18nextInstance) => {
   const postsElement = document.querySelector('.posts');
   removeAllChildNodes(postsElement);
 
@@ -75,7 +74,7 @@ const renderPosts = (posts) => {
 
     const buttonElement = document.createElement('button');
     buttonElement.type = 'button';
-    buttonElement.textContent = i18next.t('watchLink');
+    buttonElement.textContent = i18nextInstance.t('watchLink');
     buttonElement.classList.add('btn', 'btn-primary', 'btn-sm');
     buttonElement.setAttribute('data-id', '2');
     buttonElement.setAttribute('data-toggle', 'modal');
@@ -92,35 +91,35 @@ const renderPosts = (posts) => {
   });
 };
 
-const renderFeedback = (feedback) => {
+const renderFeedback = (feedback, i18nextInstance) => {
   const feedbackElement = document.querySelector('.feedback');
   if (feedback === 'succeed') {
-    feedbackElement.textContent = i18next.t('successMessage');
+    feedbackElement.textContent = i18nextInstance.t('successMessage');
     feedbackElement.classList.remove('text-danger');
     feedbackElement.classList.add('text-success');
     return;
   }
   if (feedback instanceof Error) {
-    feedbackElement.textContent = i18next.t(`errors.${feedback.message}`);
+    feedbackElement.textContent = i18nextInstance.t(`errors.${feedback.message}`);
     feedbackElement.classList.remove('text-success');
     feedbackElement.classList.add('text-danger');
   }
 };
 
-const watchedState = onChange(state, (path, value) => {
+const watchedState = (i18nextInstance) => onChange(state, (path, value) => {
   switch (path) {
     case 'form.processState':
-      renderFeedback(value);
+      renderFeedback(value, i18nextInstance);
       break;
     case 'form.error':
-      renderFeedback(value);
+      renderFeedback(value, i18nextInstance);
       break;
     case 'data.feeds':
       renderFeeds(value);
       console.log(state.data.feeds);
       break;
     case 'data.posts':
-      renderPosts(value);
+      renderPosts(value, i18nextInstance);
       break;
     default:
       break;

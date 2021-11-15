@@ -1,12 +1,14 @@
+import _ from 'lodash';
 import i18next from 'i18next';
 import ru from './locales/ru.js';
 import validateUrl from './utils/validator.js';
 import watchedState from './view.js';
 import getData from './utils/getData.js';
-import setDataState from './utils/setDataState.js';
+import parseFeed from './utils/parser.js';
 
 export default async () => {
-  await i18next.init({
+  const i18nextInstance = i18next.createInstance();
+  await i18nextInstance.init({
     lng: 'ru',
     debug: true,
     resources: {
@@ -20,10 +22,9 @@ export default async () => {
     e.preventDefault();
     const formData = new FormData(formElement);
     const url = formData.get('url');
-    console.log(url)
-    validateUrl(url, watchedState.data.feeds)
+    validateUrl(url, watchedState(i18nextInstance).data.feeds)
       .then((link) => {
-        watchedState.form.error = null;
+        watchedState(i18nextInstance).form.error = null;
         return link;
       })
       .then((link) => getData(link))
@@ -31,15 +32,31 @@ export default async () => {
         const {
           data: { contents },
         } = response;
-        setDataState(contents, url);
-        watchedState.form.processState = 'succeed';
+        const id = _.uniqueId();
+        const { title, description, posts } = parseFeed(contents);
+        watchedState(i18nextInstance).data.feeds.unshift({
+          id,
+          url,
+          title,
+          description,
+        });
+        const allPosts = [
+          ...watchedState(i18nextInstance).data.posts,
+          ...posts.map((post) => ({ ...post, feedId: id })),
+        ];
+        watchedState(i18nextInstance).data.posts = _.orderBy(
+          allPosts,
+          'pubDate',
+          'desc',
+        );
+        watchedState(i18nextInstance).form.processState = 'succeed';
         formElement.reset();
         inputElement.focus();
         inputElement.classList.remove('is-invalid');
       })
       .catch((error) => {
-        watchedState.form.error = error;
-        watchedState.form.processState = 'invalid';
+        watchedState(i18nextInstance).form.error = error;
+        watchedState(i18nextInstance).form.processState = 'invalid';
         inputElement.classList.add('is-invalid');
       });
   });
