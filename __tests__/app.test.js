@@ -10,8 +10,7 @@ nock.disableNetConnect();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const getFixturePath = (filename) =>
-  path.resolve(__dirname, '__fixtures__', filename);
+const getFixturePath = (filename) => path.resolve(__dirname, '__fixtures__', filename);
 
 const pathToDefaultFixture = path.join('__tests__', '__fixtures__', 'index.html');
 
@@ -38,9 +37,7 @@ beforeEach(() => {
 test('invalid url', async () => {
   fireEvent.input(elements.input, { target: { value: 'aaa' } });
   fireEvent.submit(elements.form);
-  await waitFor(() =>
-    expect(screen.getByText('Ссылка должна быть валидным URL'))
-  );
+  await waitFor(() => expect(screen.getByText('Ссылка должна быть валидным URL')));
 });
 
 test('invalid format', async () => {
@@ -52,9 +49,7 @@ test('invalid format', async () => {
     target: { value: 'https://www.google.com/' },
   });
   fireEvent.submit(elements.form);
-  await waitFor(() =>
-    expect(screen.getByText('Ресурс не содержит валидный RSS'))
-  );
+  await waitFor(() => expect(screen.getByText('Ресурс не содержит валидный RSS')));
 });
 
 test('valid rss and duplicate', async () => {
@@ -68,14 +63,10 @@ test('valid rss and duplicate', async () => {
     target: { value: 'https://ru.hexlet.io/lessons.xml' },
   });
   fireEvent.submit(elements.form);
-  await waitFor(() =>
-    expect(screen.getByText('RSS успешно загружен'))
-  );
+  await waitFor(() => expect(screen.getByText('RSS успешно загружен')));
   fireEvent.input(elements.input, {
     target: { value: 'https://ru.hexlet.io/lessons.xml' },
   });
   fireEvent.submit(elements.form);
-  await waitFor(() =>
-  expect(screen.getByText('RSS уже существует'))
-);
+  await waitFor(() => expect(screen.getByText('RSS уже существует')));
 });

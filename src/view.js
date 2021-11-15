@@ -119,7 +119,7 @@ const renderForm = (processState) => {
     formElement.removeAttribute('disabled');
     submitButton.removeAttribute('disabled');
   }
-}
+};
 
 const initWatchedState = (i18nextInstance, state) => onChange(state, (path, value) => {
   switch (path) {
