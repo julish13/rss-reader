@@ -34,6 +34,7 @@ export default async () => {
 
   formElement.addEventListener('submit', (e) => {
     e.preventDefault();
+    watchedState.form.processState = 'submitting';
     const formData = new FormData(formElement);
     const url = formData.get('url');
     validateUrl(url, watchedState.data.feeds)

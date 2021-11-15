@@ -105,10 +105,27 @@ const renderFeedback = (feedback, i18nextInstance) => {
   }
 };
 
+const renderForm = (processState) => {
+  const formElement = document.querySelector('.rss-form');
+  const inputElement = formElement.querySelector('input');
+  const submitButton = formElement.querySelector('button');
+
+  if (processState === 'submitting') {
+    inputElement.setAttribute('readonly', true);
+    formElement.setAttribute('disabled', true);
+    submitButton.setAttribute('disabled', true);
+  } else {
+    inputElement.removeAttribute('readonly');
+    formElement.removeAttribute('disabled');
+    submitButton.removeAttribute('disabled');
+  }
+}
+
 const initWatchedState = (i18nextInstance, state) => onChange(state, (path, value) => {
   switch (path) {
     case 'form.processState':
       renderFeedback(value, i18nextInstance);
+      renderForm(value);
       break;
     case 'form.error':
       renderFeedback(value, i18nextInstance);
