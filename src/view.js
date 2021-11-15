@@ -106,7 +106,7 @@ const renderFeedback = (feedback, i18nextInstance) => {
   }
 };
 
-const watchedState = (i18nextInstance) => onChange(state, (path, value) => {
+const initWatchedState = (i18nextInstance) => onChange(state, (path, value) => {
   switch (path) {
     case 'form.processState':
       renderFeedback(value, i18nextInstance);
@@ -126,4 +126,4 @@ const watchedState = (i18nextInstance) => onChange(state, (path, value) => {
   }
 });
 
-export default watchedState;
+export default initWatchedState;
