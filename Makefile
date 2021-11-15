@@ -5,7 +5,7 @@ prettier:
 	npx prettier --write ./src/ ./__tests__/
 
 lint:
-	npx eslint --fix ./src/
+	npx eslint --fix ./src/ ./__tests__/
 
 test:
 	npm test
