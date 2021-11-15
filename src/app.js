@@ -15,10 +15,22 @@ export default async () => {
       ru,
     },
   });
+
+  const state = {
+    form: {
+      processState: 'initial',
+      error: null,
+    },
+    data: {
+      feeds: [],
+      posts: [],
+    },
+  };
+
   const formElement = document.querySelector('.rss-form');
   const inputElement = formElement.querySelector('input');
 
-  const watchedState = initWatchedState(i18nextInstance);
+  const watchedState = initWatchedState(i18nextInstance, state);
 
   formElement.addEventListener('submit', (e) => {
     e.preventDefault();

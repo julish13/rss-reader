@@ -1,6 +1,5 @@
 import onChange from 'on-change';
 import removeAllChildNodes from './utils/removeAllChildNodes.js';
-import state from './state.js';
 
 const renderFeeds = (feeds) => {
   const feedsElement = document.querySelector('.feeds');
@@ -106,7 +105,7 @@ const renderFeedback = (feedback, i18nextInstance) => {
   }
 };
 
-const initWatchedState = (i18nextInstance) => onChange(state, (path, value) => {
+const initWatchedState = (i18nextInstance, state) => onChange(state, (path, value) => {
   switch (path) {
     case 'form.processState':
       renderFeedback(value, i18nextInstance);
