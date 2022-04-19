@@ -4,7 +4,7 @@
 [![Node CI](https://github.com/julish13/frontend-project-lvl3/actions/workflows/tests.yml/badge.svg)](https://github.com/julish13/frontend-project-lvl3/actions/workflows/tests.yml)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c45c604f046d01c2e02f/test_coverage)](https://codeclimate.com/github/julish13/frontend-project-lvl3/test_coverage)
 
-[RSS агрегатор](https://rss-reader-4kdzewynk-julish13.vercel.app/) — сервис для агрегации RSS-потоков, с помощью которых удобно читать разнообразные источники, например, блоги. Он позволяет добавлять неограниченное количество RSS-лент, сам их обновляет и добавляет новые записи в общий поток.
+[RSS агрегатор](https://rss-reader-beta.vercel.app/) — сервис для агрегации RSS-потоков, с помощью которых удобно читать разнообразные источники, например, блоги. Он позволяет добавлять неограниченное количество RSS-лент, сам их обновляет и добавляет новые записи в общий поток.
 
 Проект выполнен на чистом JS и покрыт тестами.
 
