@@ -4,4 +4,10 @@
 [![Node CI](https://github.com/julish13/frontend-project-lvl3/actions/workflows/tests.yml/badge.svg)](https://github.com/julish13/frontend-project-lvl3/actions/workflows/tests.yml)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c45c604f046d01c2e02f/test_coverage)](https://codeclimate.com/github/julish13/frontend-project-lvl3/test_coverage)
 
-[Мой проект на Vercel](https://frontend-project-lvl3-eight-drab.vercel.app/)
+[RSS агрегатор](https://frontend-project-lvl3-eight-drab.vercel.app/) — сервис для агрегации RSS-потоков, с помощью которых удобно читать разнообразные источники, например, блоги. Он позволяет добавлять неограниченное количество RSS-лент, сам их обновляет и добавляет новые записи в общий поток.
+
+Проект выполнен на чистом JS и покрыт тестами.
+
+
+![image](https://user-images.githubusercontent.com/16277885/164072144-39db897a-8a09-4316-93f6-384533eb672b.png)
+
