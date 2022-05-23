@@ -1,18 +1,22 @@
 import _ from 'lodash';
 import i18next from 'i18next';
 import ru from './locales/ru.js';
+import en from './locales/en.js';
 import validateUrl from './utils/validator.js';
 import initWatchedState from './view.js';
 import getData from './utils/getData.js';
 import parseFeed from './utils/parser.js';
 
+const defaultLanguage = 'ru';
+
 export default async () => {
   const i18nextInstance = i18next.createInstance();
   await i18nextInstance.init({
-    lng: 'ru',
+    lng: defaultLanguage,
     debug: true,
     resources: {
       ru,
+      en
     },
   });
 
@@ -25,10 +29,12 @@ export default async () => {
       feeds: [],
       posts: [],
     },
+    lng: defaultLanguage,
   };
 
   const formElement = document.querySelector('.rss-form');
   const inputElement = formElement.querySelector('input');
+  const lngChangeButton = document.querySelector('.lng-change');
 
   const watchedState = initWatchedState(i18nextInstance, state);
 
@@ -75,4 +81,12 @@ export default async () => {
         inputElement.classList.add('is-invalid');
       });
   });
+
+  lngChangeButton.addEventListener('click', () => {
+    console.log(i18nextInstance)
+    // i18nextInstance.changeLanguage('en', (err, t) => {
+    //   if (err) return console.log('something went wrong loading', err);
+    //   t('key'); // -> same as i18next.t
+    // });
+  })
 };

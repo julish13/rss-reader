@@ -132,11 +132,13 @@ const initWatchedState = (i18nextInstance, state) => onChange(state, (path, valu
       break;
     case 'data.feeds':
       renderFeeds(value);
-      console.log(state.data.feeds);
       break;
     case 'data.posts':
       renderPosts(value, i18nextInstance);
       break;
+    case 'data.lng':
+      renderFeeds(state.data.feeds);
+      renderPosts(state.data.posts);
     default:
       break;
   }
