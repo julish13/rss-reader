@@ -6,7 +6,7 @@ import submitHandler from './utils/submitHandler.js';
 import languageChangeHandler from './utils/languageChangeHandler.js';
 import removeFeedHandler from './utils/removeFeedHandler.js';
 
-const defaultLanguage = 'ru';
+const defaultLanguage = 'en';
 
 export default async () => {
   const language = localStorage.getItem('language') || defaultLanguage;
