@@ -24,6 +24,7 @@ export default {
     },
     feeds: {
       title: 'Фиды',
+      delete: 'Отписаться',
     },
     modal: {
       read: 'Читать полностью',

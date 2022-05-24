@@ -5,6 +5,10 @@ const renderPosts = (posts, i18nextInstance) => {
   const postsElement = document.querySelector('.posts');
   removeAllChildNodes(postsElement);
 
+  if (posts.length === 0) {
+    return;
+  }
+
   const headingElement = document.createElement('h2');
   headingElement.textContent = i18nextInstance.t('posts.title');
 

@@ -4,6 +4,7 @@ import en from './locales/en.js';
 import initWatchedState from './view/view.js';
 import submitHandler from './utils/submitHandler.js';
 import languageChangeHandler from './utils/languageChangeHandler.js';
+import removeFeedHandler from './utils/removeFeedHandler.js';
 
 const defaultLanguage = 'ru';
 
@@ -47,12 +48,20 @@ export default async () => {
 
   const languageChangeButton = document.querySelector('.language-change');
   const formElement = document.querySelector('.rss-form');
+  const feedsElement = document.querySelector('.feeds');
 
   languageChangeButton.addEventListener('click', (e) => {
-    languageChangeHandler(e, i18nextInstance, languageChangeButton, watchedState);
+    languageChangeHandler(
+      e,
+      i18nextInstance,
+      languageChangeButton,
+      watchedState,
+    );
   });
 
   formElement.addEventListener('submit', (e) => {
     submitHandler(e, watchedState, formElement);
   });
+
+  feedsElement.addEventListener('click', (e) => removeFeedHandler(e, watchedState));
 };

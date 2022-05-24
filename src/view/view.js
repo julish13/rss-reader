@@ -26,10 +26,8 @@ const initWatchedState = (i18nextInstance, state) => onChange(state, (path, valu
       localStorage.setItem('posts', JSON.stringify(value));
       break;
     case 'language':
-      if (state.data.feeds.length > 0) {
-        renderFeeds(state.data.feeds, i18nextInstance);
-        renderPosts(state.data.posts, i18nextInstance);
-      }
+      renderFeeds(state.data.feeds, i18nextInstance);
+      renderPosts(state.data.posts, i18nextInstance);
       renderForm(state.form.processState, i18nextInstance);
       renderHeader(state, i18nextInstance);
       if (state.form.feedback.error) {

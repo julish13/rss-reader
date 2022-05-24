@@ -24,6 +24,7 @@ export default {
     },
     feeds: {
       title: 'Feeds',
+      delete: 'Remove feed',
     },
     modal: {
       read: 'Full article',
