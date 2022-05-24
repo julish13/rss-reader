@@ -9,7 +9,7 @@ const validateUrl = (urlValidated, list) => {
       list.map(({ url }) => url),
       'duplicate',
     );
-  return schema.validate(urlValidated);
+  return schema.validate(urlValidated.trim());
 };
 
 export default validateUrl;
