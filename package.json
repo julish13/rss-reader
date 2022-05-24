@@ -5,7 +5,7 @@
   "main": "./src/app.js",
   "type": "module",
   "scripts": {
-    "test": "npx -n '--experimental-vm-modules --no-warnings' jest --colors",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --colors",
     "build": "webpack",
     "start": "webpack serve --open"
   },

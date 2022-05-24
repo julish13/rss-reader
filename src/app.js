@@ -35,7 +35,6 @@ export default async () => {
       posts: [],
     },
     lng: null,
-    mounted: false,
   };
 
   const watchedState = initWatchedState(i18nextInstance, state);

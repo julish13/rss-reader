@@ -43,7 +43,7 @@ test('invalid url', async () => {
 });
 
 test('invalid format', async () => {
-  nock('https://hexlet-allorigins.herokuapp.com')
+  nock('https://allorigins.hexlet.app')
     .get(`/get?disableCache=true&url=${encodeURIComponent('https://www.google.com/')}`)
     .reply(200, { contents: 'aaa' }, nockHeaders);
 
@@ -57,7 +57,7 @@ test('invalid format', async () => {
 test('valid rss and duplicate', async () => {
   const validRSS = fs.readFileSync(getFixturePath('lessons.xml')).toString();
 
-  nock('https://hexlet-allorigins.herokuapp.com')
+  nock('https://allorigins.hexlet.app')
     .get((uri) => uri.includes('get'))
     .reply(200, { contents: validRSS }, nockHeaders);
 

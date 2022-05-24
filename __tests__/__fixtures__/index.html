@@ -1,101 +1,132 @@
-<div
-  class="modal fade"
-  id="modal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="modal"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"></h5>
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,shrink-to-fit=no"
+    />
+    <title>Hexlet Frontend Project</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body
+    class="d-flex flex-column min-vh-100"
+    data-new-gr-c-s-check-loaded="14.1038.0"
+    data-gr-ext-installed=""
+  >
+    <div class="modal" tabindex="-1" role="dialog" id="modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p></p>
+          </div>
+          <div class="modal-footer">
+            <a
+              class="btn btn-primary full-article"
+              href="#"
+              role="button"
+              target="_blank"
+              rel="noopener noreferrer"
+            ></a
+            ><button
+              type="button"
+              class="btn btn-secondary close-modal"
+              data-dismiss="modal"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <main class="flex-grow-1">
+      <header class="container-fluid bg-dark p-5">
         <button
           type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body"></div>
-      <div class="modal-footer">
-        <a
-          class="btn btn-primary full-article"
-          href="#"
-          role="button"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Читать полностью </a
-        ><button
-          type="button"
-          class="btn btn-secondary"
-          data-dismiss="modal"
-        >
-          Закрыть
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-<main class="flex-grow-1">
-  <section class="container-fluid bg-dark p-5">
-    <div class="row">
-      <div class="col-md-10 col-lg-8 mx-auto text-white">
-        <h1 class="display-3">RSS агрегатор</h1>
-        <p class="lead">
-          Начните читать RSS сегодня! Это легко, это красиво.
-        </p>
-        <form action="" class="rss-form" data-testid="rss-form">
-          <div class="form-row">
-            <div class="col">
-              <input
-                autofocus
-                required
-                name="url"
-                aria-label="url"
-                class="form-control form-control-lg w-100"
-                placeholder="ссылка RSS"
-                data-testid="input"
-              />
-            </div>
-            <div class="col-auto">
-              <button
-                type="submit"
-                aria-label="add"
-                class="btn btn-lg btn-primary px-sm-5"
-              >
-                Add
-              </button>
-            </div>
+          class="btn btn-outline-primary d-block ms-auto lng-change"
+        ></button>
+        <div class="row">
+          <div class="col-md-10 col-lg-8 mx-auto text-white header-wrapper">
+            <h1 class="display-3 mb-0 main-title"></h1>
+            <p class="lead subtitle"></p>
+            <form action="" class="rss-form text-body" data-testid="rss-form">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <input
+                      id="url-input"
+                      autofocus=""
+                      name="url"
+                      aria-label="url"
+                      class="form-control w-100"
+                      placeholder="ссылка RSS"
+                      autocomplete="off"
+                      data-testid="input"
+                    />
+                    <label for="url-input"></label>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <button
+                    type="submit"
+                    aria-label="add"
+                    class="h-100 btn btn-lg btn-primary px-sm-5"
+                  ></button>
+                </div>
+              </div>
+            </form>
+            <p class="mt-2 mb-0 text-muted example"></p>
+            <p
+              class="feedback m-0 position-absolute small text-danger"
+              data-testid="feedback"
+            ></p>
           </div>
-        </form>
-        <p class="text-muted my-1">
-          Пример: https://ru.hexlet.io/lessons.rss
-        </p>
-        <div class="feedback" data-testid="feedback"></div>
+        </div>
+      </header>
+      <section class="container-fluid container-xxl p-5">
+        <div class="row">
+          <div class="col-md-10 col-lg-8 order-1 mx-auto posts"></div>
+          <div
+            class="col-md-10 col-lg-4 mx-auto order-0 order-lg-1 feeds"
+          ></div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer border-top py-3 mt-5 bg-light">
+      <div class="container-xl">
+        <div class="text-center">
+          created by
+          <a
+            href="https://ru.hexlet.io/professions/frontend/projects/11"
+            target="_blank"
+            >Hexlet</a
+          >
+        </div>
       </div>
-    </div>
-  </section>
-  <section class="container-fluid p-5">
-    <div class="row">
-      <div class="col-md-10 col-lg-8 mx-auto feeds"></div>
-    </div>
-    <div class="row">
-      <div class="col-md-10 col-lg-8 mx-auto posts"></div>
-    </div>
-  </section>
-</main>
-<footer class="footer border-top py-3 mt-5">
-  <div class="container-xl">
-    <div class="text-center">
-      created by
-      <a
-        href="https://ru.hexlet.io/professions/frontend/projects/11"
-        target="_blank"
-        >Hexlet</a
-      >
-    </div>
-  </div>
-</footer>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
