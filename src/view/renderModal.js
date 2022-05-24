@@ -9,7 +9,7 @@ const renderModal = ({ title, url, description }, i18nextInstance) => {
   modalCloseButton.textContent = i18nextInstance.t('modal.close');
 
   modalTitle.textContent = title;
-  modalBody.textContent = description;
+  modalBody.innerHTML = description;
   modalLink.href = url;
 };
 
