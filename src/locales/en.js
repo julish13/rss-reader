@@ -7,7 +7,7 @@ export default {
     form: {
       label: 'RSS Link',
       add: 'Add',
-      example: 'Example: https://ru.hexlet.io/lessons.rss',
+      example: 'Example: https://meduza.io/rss/en/all',
       successMessage: 'RSS has been successfully loaded',
       errors: {
         invalidFormat: 'The resource does not contain valid RSS',
