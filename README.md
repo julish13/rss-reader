@@ -7,5 +7,6 @@
 
 The project is made in pure JS and covered by tests.
 
-![image](https://user-images.githubusercontent.com/16277885/164072144-39db897a-8a09-4316-93f6-384533eb672b.png)
+![image](https://user-images.githubusercontent.com/16277885/170021186-d2516e50-9d05-4edc-95aa-b10658ee3b6d.png)
+
 
