@@ -34,6 +34,10 @@ const renderPosts = (posts, i18nextInstance) => {
     linkElement.setAttribute('target', '_blank');
     linkElement.setAttribute('rel', 'noopener noreferrer');
     linkElement.textContent = title;
+    linkElement.onclick = () => {
+      linkElement.classList.remove('fw-bold');
+      linkElement.classList.add('fw-normal');
+    };
 
     const buttonElement = document.createElement('button');
     buttonElement.type = 'button';
