@@ -2,7 +2,7 @@ export default {
   translation: {
     header: {
       title: 'RSS Aggregator',
-      subtitle: 'Start reading RSS today!'
+      subtitle: 'Start reading RSS today!',
     },
     form: {
       label: 'RSS Link',
@@ -27,7 +27,7 @@ export default {
     },
     modal: {
       read: 'Full article',
-      close: 'Close'
-    }
+      close: 'Close',
+    },
   },
 };

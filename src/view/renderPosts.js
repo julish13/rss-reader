@@ -20,7 +20,7 @@ const renderPosts = (posts, i18nextInstance) => {
       'list-group-item',
       'd-flex',
       'justify-content-between',
-      'align-items-start'
+      'align-items-start',
     );
 
     const linkElement = document.createElement('a');
@@ -39,7 +39,7 @@ const renderPosts = (posts, i18nextInstance) => {
     buttonElement.setAttribute('data-toggle', 'modal');
     buttonElement.setAttribute('data-target', '#modal');
     buttonElement.onclick = () => {
-      renderModal({title, url, description}, i18nextInstance);
+      renderModal({ title, url, description }, i18nextInstance);
       linkElement.classList.remove('fw-bold');
       linkElement.classList.add('fw-normal');
     };

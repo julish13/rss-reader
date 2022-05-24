@@ -6,7 +6,7 @@ const renderFeeds = (feeds, i18nextInstance) => {
 
   const headingElement = document.createElement('h2');
   headingElement.textContent = i18nextInstance.t('feeds.title');
-  
+
   const listElement = document.createElement('ul');
   listElement.classList.add('list-group', 'mb-5');
 

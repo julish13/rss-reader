@@ -1,4 +1,4 @@
-const renderModal = ({title, url, description}, i18nextInstance) => {
+const renderModal = ({ title, url, description }, i18nextInstance) => {
   const modal = document.querySelector('.modal-content');
   const modalTitle = modal.querySelector('.modal-title');
   const modalBody = modal.querySelector('.modal-body');
@@ -7,7 +7,6 @@ const renderModal = ({title, url, description}, i18nextInstance) => {
 
   modalLink.textContent = i18nextInstance.t('modal.read');
   modalCloseButton.textContent = i18nextInstance.t('modal.close');
-
 
   modalTitle.textContent = title;
   modalBody.textContent = description;

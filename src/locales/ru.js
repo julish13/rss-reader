@@ -2,7 +2,7 @@ export default {
   translation: {
     header: {
       title: 'RSS агрегатор',
-      subtitle: 'Начните читать RSS сегодня! Это легко, это красиво.'
+      subtitle: 'Начните читать RSS сегодня! Это легко, это красиво.',
     },
     form: {
       label: 'Ссылка RSS',
@@ -27,7 +27,7 @@ export default {
     },
     modal: {
       read: 'Читать полностью',
-      close: 'Закрыть'
-    }
+      close: 'Закрыть',
+    },
   },
 };

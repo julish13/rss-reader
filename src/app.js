@@ -55,9 +55,7 @@ export default async () => {
     const formData = new FormData(formElement);
     const url = formData.get('url');
     validateUrl(url, watchedState.data.feeds)
-      .then((link) => {
-        return link;
-      })
+      .then((link) => link)
       .then((link) => getData(link))
       .then((response) => {
         const {
@@ -92,9 +90,7 @@ export default async () => {
   languageChangeButton.addEventListener('click', () => {
     const currentLanguage = i18nextInstance.language;
     const newLanguage = currentLanguage === 'ru' ? 'en' : 'ru';
-    i18nextInstance.changeLanguage(newLanguage, (err) => {
-      if (err) return console.log('something went wrong loading', err);
-    });
+    i18nextInstance.changeLanguage(newLanguage);
     watchedState.language = newLanguage;
     languageChangeButton.textContent = currentLanguage;
   });
