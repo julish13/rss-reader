@@ -20,11 +20,13 @@ const initWatchedState = (i18nextInstance, state) =>
         break;
       case 'data.feeds':
         renderFeeds(value, i18nextInstance);
+        localStorage.setItem('feeds', JSON.stringify(value));
         break;
       case 'data.posts':
         renderPosts(value, i18nextInstance);
+        localStorage.setItem('posts', JSON.stringify(value));
         break;
-      case 'lng':
+      case 'language':
         if (state.data.feeds.length > 0) {
           renderFeeds(state.data.feeds, i18nextInstance);
           renderPosts(state.data.posts, i18nextInstance);
@@ -37,6 +39,7 @@ const initWatchedState = (i18nextInstance, state) =>
         if (state.form.feedback.success) {
           renderSuccessMessage(state.form.feedback.success, i18nextInstance);
         }
+        localStorage.setItem('language', value);
       default:
         break;
     }

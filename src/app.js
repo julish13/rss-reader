@@ -10,17 +10,19 @@ import parseFeed from './utils/parser.js';
 const defaultLanguage = 'ru';
 
 export default async () => {
+  const language = localStorage.getItem('language') || defaultLanguage;
+  const feeds = localStorage.getItem('feeds') ? JSON.parse(localStorage.getItem('feeds')) : [];
+  const posts = localStorage.getItem('posts') ? JSON.parse(localStorage.getItem('posts')) : [];
+
   const i18nextInstance = i18next.createInstance();
   await i18nextInstance.init({
-    lng: defaultLanguage,
+    lng: language,
     debug: true,
     resources: {
       ru,
       en,
     },
   });
-
-  const language = defaultLanguage;
 
   const state = {
     form: {
@@ -31,19 +33,19 @@ export default async () => {
       },
     },
     data: {
-      feeds: [],
-      posts: [],
+      feeds,
+      posts,
     },
-    lng: null,
+    language: null,
   };
 
   const watchedState = initWatchedState(i18nextInstance, state);
 
-  watchedState.lng = language;
+  watchedState.language = language;
 
   const formElement = document.querySelector('.rss-form');
   const inputElement = formElement.querySelector('input');
-  const lngChangeButton = document.querySelector('.lng-change');
+  const languageChangeButton = document.querySelector('.language-change');
 
   formElement.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -87,13 +89,13 @@ export default async () => {
       });
   });
 
-  lngChangeButton.addEventListener('click', () => {
+  languageChangeButton.addEventListener('click', () => {
     const currentLanguage = i18nextInstance.language;
     const newLanguage = currentLanguage === 'ru' ? 'en' : 'ru';
     i18nextInstance.changeLanguage(newLanguage, (err) => {
       if (err) return console.log('something went wrong loading', err);
     });
-    watchedState.lng = newLanguage;
-    lngChangeButton.textContent = currentLanguage;
+    watchedState.language = newLanguage;
+    languageChangeButton.textContent = currentLanguage;
   });
 };
